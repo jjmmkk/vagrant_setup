@@ -1,0 +1,20 @@
+{
+	"name": "lamp",
+	"description": "Linux box with Apache, MySQL and PHP.",
+	"json_class": "Chef::Role",
+	"chef_type": "role",
+	"run_list": [
+		"recipe[apache2]",
+		"recipe[php]",
+		"recipe[apache2::mod_php5]",
+		"recipe[mysql::client]",
+		"recipe[mysql::server]"
+	],
+	"default_attributes": {
+		"mysql": {
+			"server_debian_password": "root",
+			"server_repl_password": "root",
+			"server_root_password": "root"
+		}
+	}
+}

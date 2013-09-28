@@ -1,0 +1,12 @@
+{
+	"ip": "192.168.44.44",
+	"memory": "2048",
+	"synced_folder": {
+		"host_path": "data/",
+		"guest_path": "/var/www"
+	},
+	"roles": [
+		"base",
+		"lamp"
+	]
+}

@@ -27,12 +27,9 @@ module Build
 				STDOUT.puts('Choose a setup (n)')
 				STDOUT.puts(setups_list)
 				STDOUT.print('> ')
-				setup = STDIN.gets.chomp
-				unless setup =~ /^[0-1]+$/
-					setup = (setup.to_i) - 1
-					unless setups[setup].nil?
-						break
-					end
+				setup = STDIN.gets.chomp.to_i - 1
+				unless setups[setup].nil?
+					break
 				end
 			end
 

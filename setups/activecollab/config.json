@@ -1,0 +1,9 @@
+{
+	"ip": "192.168.44.44",
+	"memory": "2048",
+	"roles": [
+		"base",
+		"lamp",
+		"activecollab"
+	]
+}

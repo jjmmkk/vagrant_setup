@@ -17,7 +17,9 @@ Vagrant.configure("2") do |config|
 		vb.customize ["modifyvm", :id, "--memory", setup_config["memory"]]
 
 		# Synced Folder
-		config.vm.synced_folder setup_config["synced_folder"]["host_path"], setup_config["synced_folder"]["guest_path"]
+		unless setup_config["synced_folder"].nil?
+			config.vm.synced_folder setup_config["synced_folder"]["host_path"], setup_config["synced_folder"]["guest_path"]
+		end
 	end
 
 	# Customize provisioner

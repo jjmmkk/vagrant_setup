@@ -1,24 +1,24 @@
-[submodule "lib/cookbooks/apache2"]
-	path = lib/cookbooks/apache2
-	url = https://github.com/opscode-cookbooks/apache2.git
-[submodule "lib/cookbooks/apt"]
-	path = lib/cookbooks/apt
-	url = https://github.com/opscode-cookbooks/apt.git
-[submodule "lib/cookbooks/build-essential"]
-	path = lib/cookbooks/build-essential
-	url = https://github.com/opscode-cookbooks/build-essential.git
-[submodule "lib/cookbooks/database"]
-	path = lib/cookbooks/database
-	url = https://github.com/opscode-cookbooks/database.git
-[submodule "lib/cookbooks/git"]
-	path = lib/cookbooks/git
-	url = https://github.com/opscode-cookbooks/git.git
-[submodule "lib/cookbooks/mysql"]
-	path = lib/cookbooks/mysql
-	url = https://github.com/opscode-cookbooks/mysql.git
-[submodule "lib/cookbooks/openssl"]
-	path = lib/cookbooks/openssl
-	url = https://github.com/opscode-cookbooks/openssl.git
-[submodule "lib/cookbooks/php"]
-	path = lib/cookbooks/php
-	url = https://github.com/opscode-cookbooks/php.git
+[submodule "lib/chef/cookbooks/opscode/apt"]
+	path = lib/chef/cookbooks/opscode/apt
+	url = https://github.com/opscode-cookbooks/apt
+[submodule "lib/chef/cookbooks/opscode/build-essential"]
+	path = lib/chef/cookbooks/opscode/build-essential
+	url = https://github.com/opscode-cookbooks/build-essential
+[submodule "lib/chef/cookbooks/opscode/database"]
+	path = lib/chef/cookbooks/opscode/database
+	url = https://github.com/opscode-cookbooks/database
+[submodule "lib/chef/cookbooks/opscode/git"]
+	path = lib/chef/cookbooks/opscode/git
+	url = https://github.com/opscode-cookbooks/git
+[submodule "lib/chef/cookbooks/opscode/mysql"]
+	path = lib/chef/cookbooks/opscode/mysql
+	url = https://github.com/opscode-cookbooks/mysql
+[submodule "lib/chef/cookbooks/opscode/openssl"]
+	path = lib/chef/cookbooks/opscode/openssl
+	url = https://github.com/opscode-cookbooks/openssl
+[submodule "lib/chef/cookbooks/opscode/php"]
+	path = lib/chef/cookbooks/opscode/php
+	url = https://github.com/opscode-cookbooks/php
+[submodule "lib/chef/cookbooks/opscode/apache2"]
+	path = lib/chef/cookbooks/opscode/apache2
+	url = https://github.com/opscode-cookbooks/apache2

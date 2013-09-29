@@ -8,7 +8,8 @@
 		"recipe[php]",
 		"recipe[apache2::mod_php5]",
 		"recipe[mysql::client]",
-		"recipe[mysql::server]"
+		"recipe[mysql::server]",
+		"recipe[lamp]"
 	],
 	"default_attributes": {
 		"mysql": {

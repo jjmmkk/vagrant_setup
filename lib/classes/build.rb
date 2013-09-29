@@ -65,8 +65,12 @@ module Build
 			super
 
 			@config_path = ['../../setups', @setup, 'config.json'] * '/'
-			@cookbooks_path = '../../lib/cookbooks'
-			@roles_path = '../../lib/roles'
+			@chef_path = '../../lib/chef'
+			@cookbook_paths = [
+				[@chef_path, 'cookbooks/opscode'] * '/',
+				[@chef_path, 'cookbooks/vagrant_setup'] * '/'
+			]
+			@role_paths = [[@chef_path, 'roles'] * '/']
 
 			Rake::sh "mkdir -p #{@vm_dir}"
 			# The 'data' directory will be the shared directory of the host

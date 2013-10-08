@@ -5,12 +5,5 @@
 	"chef_type": "role",
 	"run_list": [
 		"recipe[activecollab]"
-	],
-	"default_attributes": {
-		"mysql": {
-			"server_debian_password": "root",
-			"server_repl_password": "root",
-			"server_root_password": "root"
-		}
-	}
+	]
 }

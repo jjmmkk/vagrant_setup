@@ -5,5 +5,10 @@
 		"base",
 		"lamp",
 		"activecollab"
-	]
+	],
+	"mysql": {
+		"name": "ac",
+		"username": "root",
+		"password": "root"
+	}
 }

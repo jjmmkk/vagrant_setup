@@ -12,7 +12,7 @@ end
 
 
 # Build
-
+task :build => ['build:contained']
 namespace :build do
 
 	desc "Build a contained VM, intended to be short lived"

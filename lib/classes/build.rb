@@ -69,15 +69,15 @@ module Build
 			]
 			@role_paths = [[@chef_path, 'roles'] * '/']
 
-			Rake::sh "mkdir -p #{@vm_dir}"
+			system "mkdir -p #{@vm_dir}"
 			# The 'data' directory will be the shared directory of the host
-			Rake::sh "mkdir -p #{@vm_dir}/data"
+			system "mkdir -p #{@vm_dir}/data"
 
 			vagrantfile_template = ::ERB.new(File.read('lib/templates/vagrantfile.erb'))
 			vagrantfile_contents = vagrantfile_template.result(binding)
 			File.open([@vm_dir, 'Vagrantfile'] * '/', 'w') { |file| file.write( vagrantfile_contents ) }
 
-			Rake::sh "cd #{@vm_dir} && vagrant up --provision"
+			system "cd #{@vm_dir} && vagrant up --provision"
 		end
 
 	end

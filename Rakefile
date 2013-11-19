@@ -1,6 +1,6 @@
 # Load classes
 
-require 'lib/classes/build'
+require './lib/classes/build'
 
 
 # Help

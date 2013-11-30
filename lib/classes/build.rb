@@ -61,21 +61,11 @@ module Build
 		def initialize()
 			super
 
-			@config_path = ['../../setups', @setup, 'config.json'] * '/'
-			@chef_path = '../../lib/chef'
-			@cookbook_paths = [
-				[@chef_path, 'cookbooks/opscode'] * '/',
-				[@chef_path, 'cookbooks/vagrant_setup'] * '/'
-			]
-			@role_paths = [[@chef_path, 'roles'] * '/']
-
 			system "mkdir -p #{@vm_dir}"
 			# The 'data' directory will be the shared directory of the host
 			system "mkdir -p #{@vm_dir}/data"
 
-			vagrantfile_template = ::ERB.new(File.read('lib/templates/vagrantfile.erb'))
-			vagrantfile_contents = vagrantfile_template.result(binding)
-			File.open([@vm_dir, 'Vagrantfile'] * '/', 'w') { |file| file.write( vagrantfile_contents ) }
+			system "cp setups/#{@setup}/* #{@vm_dir}/"
 
 			system "cd #{@vm_dir} && vagrant up --provision"
 		end

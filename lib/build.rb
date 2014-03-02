@@ -1,10 +1,11 @@
-require 'erb'
-
 module Build
+
 
 	class Build
 
 		@@vms_dir = 'vms'
+		@@setups_dir = 'setups'
+		@@synced_dir = 'synced_folder'
 
 		def initialize()
 			@setup = Build.prompt_setup()
@@ -17,7 +18,7 @@ module Build
 		end
 
 		def self.prompt_setup()
-			setups = Dir['setups/*'].each { |e| e.gsub!('setups/', '') }
+			setups = Dir["#{@@setups_dir}/*"].each { |e| e.gsub!("#{@@setups_dir}/", '') }
 			setups_list = ''
 			setups.each_with_index do |setup_name, index|
 				setups_list << "#{index + 1}) #{setup_name}\n"
@@ -63,25 +64,12 @@ module Build
 
 			system "mkdir -p #{@vm_dir}"
 			# The 'data' directory will be the shared directory of the host
-			system "mkdir -p #{@vm_dir}/data"
-
-			system "cp setups/#{@setup}/* #{@vm_dir}/"
-
+			system "mkdir -p #{@vm_dir}/#{@@synced_dir}"
+			system "cp -r #{@@setups_dir}/#{@setup}/* #{@vm_dir}/"
 			system "cd #{@vm_dir} && vagrant up --provision"
 		end
 
 	end
 
-
-	# @todo
-	class Standalone < Build
-
-		def initialize()
-			super
-
-			STDOUT.puts('Not yet implemented')
-		end
-
-	end
 
 end

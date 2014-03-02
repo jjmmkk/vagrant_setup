@@ -1,9 +1,0 @@
-{
-	"name": "lamp",
-	"description": "activeCollab 0.7.1",
-	"json_class": "Chef::Role",
-	"chef_type": "role",
-	"run_list": [
-		"recipe[activecollab]"
-	]
-}

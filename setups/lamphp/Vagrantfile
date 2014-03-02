@@ -1,0 +1,31 @@
+Vagrant.configure("2") do |config|
+
+	# Box
+	# http://www.vagrantbox.es
+	config.vm.box = "ubuntu_precise64"
+	config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+	# Networking
+	config.vm.network "forwarded_port", guest: 80, host: 7070
+	config.vm.network "private_network", ip: "192.168.100.101", virtualbox__intnet: true
+
+	# Disable default synced folder
+	config.vm.synced_folder ".", "/vagrant", disabled: true
+	# Synced folder
+	config.vm.synced_folder "synced_folder/", "/var/www", owner: "www-data", group: "www-data"
+
+	# Provider
+	config.vm.provider :virtualbox do |vb|
+		# RAM
+		vb.customize ["modifyvm", :id, "--memory", "2048"]
+	end
+
+	# Provisioner
+	config.vm.provision "puppet" do |puppet|
+		puppet.module_path = "../../puppet/modules"
+		puppet.manifests_path = "../../puppet/manifests"
+		puppet.manifest_file = 'lamphp.pp'
+		puppet.options = "--verbose --debug"
+	end
+
+end

@@ -1,5 +1,7 @@
 import 'core.pp'
 
+include augeas
+
 
 # MySQL
 
@@ -12,12 +14,10 @@ class { 'mysql':
 
 class { 'apache': }
 
-apache::mod { 'rewrite': }
+apache::module { 'rewrite': }
 
 file { '/var/www':
     ensure => directory,
-    owner => 'root',
-    group => 'root',
 }
 ->
 file { '/var/www/index.html':
@@ -46,11 +46,12 @@ php::module { 'apc':
 }
 
 php::ini { 'php':
-    value => [
-        'date.timezone = "Europe/Oslo"',
-        'memory_limit = 1024M'
-    ],
-    target => 'php.ini',
+	value => [
+		'date.timezone = "Europe/Oslo"',
+		'memory_limit = 1024M',
+	],
+	target => 'php.ini',
+	service => 'apache',
 }
 
 include composer

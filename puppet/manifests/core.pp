@@ -7,18 +7,7 @@ Exec {
 	]
 }
 
-stage { 'core_prerun':
-    before => Stage['main'],
-}
-class { 'stdlib':
-    stage => 'core_prerun'
-}
-class { 'puppi':
-    stage => 'core_prerun'
-}
-class { 'core_packages':
-    stage => 'core_prerun'
-}
-class { 'git':
-    stage => 'core_prerun'
-}
+include stdlib
+include puppi
+include core_packages
+include git

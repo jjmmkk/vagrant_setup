@@ -1,1 +1,1 @@
-import 'core.pp'
+import 'components/core.pp'

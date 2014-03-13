@@ -6,25 +6,39 @@ Vagrant.configure("2") do |config|
 	config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/debian-70rc1-x64-vbox4210.box"
 
 	# Networking
-	config.vm.network "forwarded_port", guest: 80, host: 7070
-	config.vm.network "private_network", ip: "192.168.100.101", virtualbox__intnet: true
+	config.vm.network :forwarded_port, guest: 80, host: 8080
 
 	# Disable default synced folder
 	config.vm.synced_folder ".", "/vagrant", disabled: true
 	# Synced folder
 	config.vm.synced_folder "synced_folder/", "/var/www", owner: "www-data", group: "www-data"
 
-	# Provider
+	# VirtualBox
 	config.vm.provider :virtualbox do |vb|
 		# RAM
-		vb.customize ["modifyvm", :id, "--memory", "2048"]
+		vb.memory = 2048
+		# Networking
+#		config.vm.network "private_network", ip: "192.168.100.101", virtualbox__intnet: true
+		# Show VM GUI?
+#		vb.gui = true
+	end
+
+	# VMware Fusion
+	config.vm.provider :vmware_fusion do |vmware, override|
+		# Box
+		override.vm.box = "debian_7.0rc1_fusion"
+		override.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/debian-70rc1-x64-vf503.box"
+		# RAM
+		vmware.vmx["memsize"] = "2048"
+		# Show VM GUI?
+#		vmware.gui = true
 	end
 
 	# Provisioner
 	config.vm.provision "puppet" do |puppet|
 		puppet.module_path = "../../puppet/modules"
 		puppet.manifests_path = "../../puppet/manifests"
-		puppet.manifest_file = 'lamphp.pp'
+		puppet.manifest_file = "lamphp.pp"
 		puppet.options = "--verbose"
 		# This fixes the missing config file error,
 		# but could lead to other problems.

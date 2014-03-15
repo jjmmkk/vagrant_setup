@@ -1,0 +1,48 @@
+Vagrant.configure("2") do |config|
+
+	# Box
+	# http://www.vagrantbox.es
+	config.vm.box = "debian_7.0rc1"
+	config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/debian-70rc1-x64-vbox4210.box"
+
+	# Networking
+	config.vm.network :forwarded_port, guest: 90, host: 9090
+
+	# Disable default synced folder
+	config.vm.synced_folder ".", "/vagrant", disabled: true
+	# Synced folder
+	config.vm.synced_folder "synced_folder/", "/var/www", owner: "www-data", group: "www-data"
+
+	# VirtualBox
+	config.vm.provider :virtualbox do |vb|
+		# RAM
+		vb.memory = 2048
+		# Networking
+#		config.vm.network "private_network", ip: "192.168.100.102", virtualbox__intnet: true
+		# Show VM GUI?
+#		vb.gui = true
+	end
+
+	# VMware Fusion
+	config.vm.provider :vmware_fusion do |vmware, override|
+		# Box
+		override.vm.box = "debian_7.0rc1_fusion"
+		override.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/debian-70rc1-x64-vf503.box"
+		# RAM
+		vmware.vmx["memsize"] = "2048"
+		# Show VM GUI?
+#		vmware.gui = true
+	end
+
+	# Provisioner
+	config.vm.provision "puppet" do |puppet|
+		puppet.module_path = "../../puppet/modules"
+		puppet.manifests_path = "../../puppet/manifests"
+		puppet.manifest_file = "nodejs.pp"
+		puppet.options = "--verbose"
+		# This fixes the missing config file error,
+		# but could lead to other problems.
+		puppet.hiera_config_path = '../../puppet/hiera.yml'
+	end
+
+end

@@ -9,7 +9,7 @@ An assortment of automated [Vagrant](http://www.vagrantup.com) VM setups.
 * [Ruby](https://www.ruby-lang.org)
 * [rake](http://rake.rubyforge.org)
 * [Vagrant](http://www.vagrantup.com)
-* [VirtualBox](https://www.virtualbox.org)
+* [VirtualBox](https://www.virtualbox.org) or [VMware](http://www.vmware.com)
 
 ## Resources
 

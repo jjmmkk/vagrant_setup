@@ -32,11 +32,11 @@ module Build
 		end
 
 		def self.prompt_vm_name()
-			STDOUT.puts('Give the VM a name (alphanumerics, underscores, dashes)')
+			STDOUT.puts('Give the VM a name (alphanumerics, dashes or full stops)')
 			while true
 				STDOUT.print('> ')
 				vm_name = STDIN.gets.chomp
-				if vm_name =~ /^[a-zA-Z0-9\-_]+$/
+				if vm_name =~ /^[a-zA-Z0-9]+[a-zA-Z0-9\-\.]*$/
 					break
 				end
 			end
@@ -86,6 +86,7 @@ module Build
 			# The 'data' directory will be the shared directory of the host
 			system "mkdir -p #{@vm_dir}/#{@@synced_dir}"
 			system "cp -r #{@@setups_dir}/#{@setup}/* #{@vm_dir}/"
+			system "sed -i -e 's/{{VM_NAME}}/#{@vm_name}/g' '#{@vm_dir}/Vagrantfile'"
 			system "cd #{@vm_dir} && vagrant up --provision --provider=#{@provider}"
 		end
 

@@ -86,7 +86,7 @@ module Build
 			# The 'data' directory will be the shared directory of the host
 			system "mkdir -p #{@vm_dir}/#{@@synced_dir}"
 			system "cp -r #{@@setups_dir}/#{@setup}/* #{@vm_dir}/"
-			system "sed -i -e 's/{{VM_NAME}}/#{@vm_name}/g' '#{@vm_dir}/Vagrantfile'"
+			system "sed -i '' -e 's/{{VM_NAME}}/#{@vm_name}/g' '#{@vm_dir}/Vagrantfile'"
 			system "cd #{@vm_dir} && vagrant up --provision --provider=#{@provider}"
 		end
 
